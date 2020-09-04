@@ -1,9 +1,14 @@
 package homework.never_use_switch;
 
 import com.github.javafaker.Faker;
-import heroes.RandomUtil;
 import lombok.SneakyThrows;
 import org.fluttercode.datafactory.impl.DataFactory;
+import org.reflections.Reflections;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static heroes.RandomUtil.randomItem;
 
 /**
  * @author Evgeny Borisov
@@ -16,13 +21,12 @@ public class MailMockProducer {
 
 
     @SneakyThrows
-    public void sendMailsForever()  {
+    public void sendMailsForever() {
+        Reflections scanner = new Reflections("homework.never_use_switch");
+        List<Class<? extends MailInfo>> classes = new ArrayList<>(scanner.getSubTypesOf(MailInfo.class));
         while (true) {
-            int mailType = RandomUtil.getIntBetween(0, 3) + 1;
-            MailInfo mailInfo = MailInfo.builder()
-                    .email(dataFactory.getEmailAddress())
-                    .mailType(mailType)
-                    .text(faker.chuckNorris().fact()).build();
+            MailInfo mailInfo = randomItem(classes).getDeclaredConstructor(String.class, String.class)
+                    .newInstance(faker.chuckNorris().fact(), dataFactory.getEmailAddress());
             mailDistributor.sendMailInfo(mailInfo);
             Thread.sleep(1000);
         }
