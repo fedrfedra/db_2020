@@ -11,9 +11,6 @@ import java.lang.reflect.Field;
  */
 public class ObjectFactory {
 
-    private Config config = new ConfigMap();
-
-
     private static ObjectFactory objectFactory = new ObjectFactory();
     @Setter
     private Config config;
