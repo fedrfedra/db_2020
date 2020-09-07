@@ -27,7 +27,11 @@ public class MailMockProducer {
         while (true) {
             MailInfo mailInfo = randomItem(classes).getDeclaredConstructor(String.class, String.class)
                     .newInstance(faker.chuckNorris().fact(), dataFactory.getEmailAddress());
-            mailDistributor.sendMailInfo(mailInfo);
+            try {
+                mailDistributor.sendMailInfo(mailInfo);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             Thread.sleep(1000);
         }
     }
