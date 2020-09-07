@@ -1,5 +1,7 @@
 package my_spring;
 
+import lombok.SneakyThrows;
+
 import java.util.Map;
 
 /**
@@ -7,6 +9,7 @@ import java.util.Map;
  */
 public class ObjectFactory {
 
+    private Config config = new ConfigMap();
 
 //    private Map<Class, Class> ifc2ImplClass = Map.of(Speaker.class, ConsoleSpeaker.class)
 
@@ -20,7 +23,13 @@ public class ObjectFactory {
         return objectFactory;
     }
 
-    public Object createObject(Class type) {
+    @SneakyThrows
+    public <T> T createObject(Class<T> type) {
+        if (type.isInterface()) {
+            config.getImpl(type);
+        }
+        T t = type.getDeclaredConstructor().newInstance();
+        return t;
         //todo finish this
         // if type is concrete class, just create and return it's instance
         //if type is and interface, you should find appropriative impl.
