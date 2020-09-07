@@ -1,10 +1,10 @@
 package homework;
 
+import homework.dynamicArray.DynamicIntegerArrayImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
 import static contstants.SystemConst.SYSTEM_NAME;
-import static org.junit.Assert.*;
 
 /**
  * @author Evgeny Borisov
