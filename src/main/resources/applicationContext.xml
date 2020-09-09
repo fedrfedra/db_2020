@@ -8,7 +8,7 @@
 
 
     <context:component-scan base-package="homework.never_use_switch"/>
-    <context:component-scan base-package="real_spring"/>
+<!--    <context:component-scan base-package="real_spring"/>-->
     <context:property-placeholder location="classpath:application.properties"/>
 
 <!--    <bean class="java.lang.Integer">-->

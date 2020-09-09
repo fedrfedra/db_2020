@@ -6,7 +6,7 @@ package homework.never_use_switch;
 public class DefaultMailSender implements MailSender {
     @Override
     public void sendMail(MailInfo mailInfo) {
-        throw new UnsupportedOperationException(mailInfo.getMailType() + " not supported yet");
+//        throw new UnsupportedOperationException(mailInfo.getMailType() + " not supported yet");
     }
 
     @Override

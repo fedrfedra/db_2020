@@ -2,6 +2,7 @@ package homework.never_use_switch;
 
 import lombok.SneakyThrows;
 import org.reflections.Reflections;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Set;
 /**
  * @author Evgeny Borisov
  */
-
+@Component
 public class MailDistributor {
 
     private Map<Integer,MailSender> mailSenderMap = new HashMap<>();
