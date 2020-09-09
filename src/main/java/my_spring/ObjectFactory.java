@@ -1,13 +1,13 @@
 package my_spring;
 
-import heroes.RandomUtil;
-import lombok.Setter;
 import lombok.SneakyThrows;
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 
 import javax.annotation.PostConstruct;
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -39,30 +39,9 @@ public class ObjectFactory {
 
     @SneakyThrows
     public <T> T createObject(Class<T> implClass) {
-
-
         T t = create(implClass);
-
         configure(t);
-
         invokeInitMethod(implClass, t);
-
-        if (implClass.isAnnotationPresent(Benchmark.class)) {
-            return (T) Proxy.newProxyInstance(implClass.getClassLoader(), implClass.getInterfaces(), new InvocationHandler() {
-                @Override
-                public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-
-                    System.out.println("************* BENCHMARK STARTED for method "+ method.getName()+" ****************");
-                    long start = System.nanoTime();
-                    Object retVal = method.invoke(t, args);
-                    long end = System.nanoTime();
-                    System.out.println(end-start);
-                    System.out.println("************* BENCHMARK ENDED for method "+ method.getName()+" ****************");
-                    return retVal;
-                }
-            });
-        }
-
         return t;
     }
 
