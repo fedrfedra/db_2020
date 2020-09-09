@@ -8,7 +8,7 @@ public class WelcomeMail extends MailInfo{
     }
 
     @Override
-    public String constructMail(){
+    public String getMailType(){
         return "WELCOME " + getText() + " was sent to" + getEmail();
     }
 

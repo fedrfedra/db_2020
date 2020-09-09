@@ -8,7 +8,7 @@ public class BirthdayMail extends MailInfo {
     }
 
     @Override
-    public String constructMail(){
+    public String getMailType(){
         return "Happy Birthday " + getText() + " was sent to" + getEmail();
     }
 }

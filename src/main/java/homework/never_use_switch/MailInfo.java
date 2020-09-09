@@ -9,6 +9,6 @@ import lombok.Data;
 public abstract class MailInfo {
     String text;
     String email;
-    public abstract String constructMail();
+    public abstract String getMailType();
 
 }
