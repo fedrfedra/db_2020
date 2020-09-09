@@ -5,9 +5,10 @@ import lombok.SneakyThrows;
 import my_spring.InjectByType;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
-
+@Component
 public class InjectRandomIntBeanPostProcessor implements BeanPostProcessor {
 
     @SneakyThrows

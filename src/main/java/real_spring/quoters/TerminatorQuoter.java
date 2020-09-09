@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class TerminatorQuoter implements Quoter {
 
-    @Value("#{'${terminator}'.split(',')}")
+    @Value("${terminator}")
     private List<String> messages;
 
 
