@@ -4,7 +4,6 @@ import com.github.javafaker.Faker;
 import heroes.RandomUtil;
 import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,7 +22,6 @@ public class MailMockProducer {
     private DataFactory dataFactory;
 
 
-    @Scheduled(fixedDelay = 1000)
     public void sendMailsForever() {
 
         int mailType = RandomUtil.getIntBetween(0, 3) + 1;
@@ -34,11 +32,7 @@ public class MailMockProducer {
         mailDistributor.sendMailInfo(mailInfo);
 
 
-    public static void main(String[] args) {
-        new MailMockProducer().sendMailsForever();
     }
-
-
 }
 
 
