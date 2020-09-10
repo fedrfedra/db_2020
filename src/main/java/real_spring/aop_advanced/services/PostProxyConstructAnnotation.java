@@ -1,6 +1,9 @@
 package real_spring.aop_advanced.services;
 
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -11,20 +14,27 @@ import java.lang.reflect.Method;
 @Component
 public class PostProxyConstructAnnotation implements ApplicationListener<ContextRefreshedEvent> {
 
+    @Autowired
+    public ConfigurableListableBeanFactory factory;
     @SneakyThrows
     @Override
+
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        System.out.println("ивент");
+
         ApplicationContext context = event.getApplicationContext();
         String[] definitionNames = context.getBeanDefinitionNames();
         for (String definitionName : definitionNames) {
-            Object bean = context.getBean(definitionName);
-            Method[] methods = bean.getClass().getMethods();
+            BeanDefinition definition = factory.getBeanDefinition(definitionName);
+            String realBeanClassName = definition.getBeanClassName();
+//            System.out.println(realBeanClassName);
+            Class<?> aClass = Class.forName(realBeanClassName);
+            Method[] methods = aClass.getMethods();
             for (Method method : methods) {
                 if (method.isAnnotationPresent(PostProxyConstruct.class)) {
-                    System.out.println("запускаю");
-                    method.invoke(bean, method.getParameterTypes());
-                    System.out.println("запустила" + method.getName());
+                    Object bean = context.getBean(definitionName);
+                    Method realMethod = bean.getClass().getMethod(method.getName(), method.getParameterTypes());
+                    realMethod.invoke(bean, method.getParameterTypes());
+                    System.out.println("сработал");
                 }
             }
         }
