@@ -1,4 +1,4 @@
-package db_connect;
+package real_spring.db_connect;
 
 
 import org.springframework.stereotype.Component;

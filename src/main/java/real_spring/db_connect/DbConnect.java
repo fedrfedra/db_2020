@@ -1,4 +1,4 @@
-package db_connect;
+package real_spring.db_connect;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
