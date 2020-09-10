@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 /**
  * @author Evgeny Borisov
  */
+
 @Component
 public class ShakespeareQuoter implements Quoter {
 

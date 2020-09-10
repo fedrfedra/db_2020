@@ -10,6 +10,7 @@ import java.util.List;
  * @author Evgeny Borisov
  */
 
+
 @Component
 public class TalkingRobotImpl implements TalkingRobot {
 

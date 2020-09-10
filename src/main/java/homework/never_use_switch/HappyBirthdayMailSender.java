@@ -5,14 +5,15 @@ import org.springframework.stereotype.Component;
 /**
  * @author Evgeny Borisov
  */
-public class DefaultMailSender implements MailSender {
+@Component
+public class HappyBirthdayMailSender implements MailSender {
     @Override
     public void sendMail(MailInfo mailInfo) {
-//        throw new UnsupportedOperationException(mailInfo.getMailType() + " not supported yet");
+        System.out.println("H B");
     }
 
     @Override
     public int myCode() {
-        return 0;
+        return 3;
     }
 }

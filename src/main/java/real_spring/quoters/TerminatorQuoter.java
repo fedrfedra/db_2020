@@ -2,6 +2,8 @@ package real_spring.quoters;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -13,13 +15,12 @@ import java.util.List;
  * @author Evgeny Borisov
  */
 
+
 @Component
 public class TerminatorQuoter implements Quoter {
 
     @Value("${terminator}")
     private List<String> messages;
-
-
 
     @Autowired
     public void setWords(@Value("${terminator}") String[] words) {
