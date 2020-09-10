@@ -14,9 +14,9 @@ import java.util.List;
 @Component
 public class TalkingRobotImpl implements TalkingRobot {
 
-    @Autowired
-    private List<Quoter> quoters;
 
+    @Autowired
+    private List<Quoter> quoters = List.of(() -> System.out.println("this is default quote"));
 
 
     @Override
